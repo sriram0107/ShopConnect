@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Staff</title>
+        <style>
+            .box{
+                border: 1px solid black;
+                border-radius: 20px;
+                height: 300px;
+                width: 300px;
+                background-color: antiquewhite;
+                margin: 5px;
+                text-align: center;
+                float:left;
+            }
+            </style>
+        </head>
+        <body>
+            <a href="/main"><button>Back</button></a>
+            <p id="d"></p>
+            <div style="margin-left: 25%;margin-right:25%;margin-top:100px">
+            <form method="POST" action="/stock">
+            <button class="box" name="mask">
+                <h3 style="text-align: center;">Face Mask</h3>
+                <p>{{user.stock.mask}}</p>
+            </button>
+            <button class="box" name="ppe">
+                <h3 style="text-align: center;">PPE</h3>
+                <p>{{user.stock.ppe}}</p>
+            </button>
+            <button class="box" name="ventilator">
+                <h3 style="text-align: center;">Ventilators</h3>
+                <p>{{user.stock.ventilator}}</p>
+            </button>
+            <button class="box" name="gown">
+                <h3 style="text-align: center;">Gown</h3>
+                <p>{{user.stock.gown}}</p>
+            </button>
+            </form>
+            </div>
+            </body>
+</html>

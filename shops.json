@@ -1,0 +1,68 @@
+[
+    {
+        "name" : "Mediclinic Enterprises",
+        "address":"123 st. Dubai",
+        "contact":"+971506756362",
+        "products":{
+            "mask":1867,
+            "ppe":933,
+            "ventilator":70,
+            "gown":984
+        }
+    },
+    {
+        "name" : "Medisave Clinic",
+        "address":"12 st. Sharjah",
+        "contact":"+9714535343",
+        "products":{
+            "mask":28367,
+            "ppe":29333,
+            "ventilator":2370,
+            "gown":22984
+        }
+    },
+    {
+        "name" : "Med Care",
+        "address":"564st ,Downtown Dubai",
+        "contact":"+971504898494",
+        "products":{
+            "mask":1867,
+            "ppe":933,
+            "ventilator":70,
+            "gown":984
+        }
+    },
+    {
+        "name" : "MPGE",
+        "address":"No.12, Sheikh Zayed Road, Dubai",
+        "contact":"+971828278282",
+        "products":{
+            "mask":2867,
+            "ppe":2933,
+            "ventilator":270,
+            "gown":22984
+        }
+    },
+    {
+        "name" : "MediForAll",
+        "address":"23st. Abu Dhabi",
+        "contact":"+9716456454644",
+        "products":{
+            "mask":1867,
+            "ppe":933,
+            "ventilator":70,
+            "gown":984
+        }
+    },
+    {
+        "name" : "ABCD Clinic",
+        "address":"1233 st. Dubai",
+        "contact":"+972626252",
+        "products":{
+            "mask":2867,
+            "ppe":2933,
+            "ventilator":270,
+            "gown":22984
+        }
+    }
+]

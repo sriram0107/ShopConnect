@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <style>
+            .box{
+                border: 1px solid black;
+                border-radius: 20px;
+                height: 100px;
+                width: 150px;
+                background-color: antiquewhite;
+                margin: 10px;
+                text-align: center;
+                float:left;
+            }
+            </style>
+        <title>Main Page</title>
+        </head>
+        <body>
+            {{>nav}}
+            <br>
+            <h1 style="text-align: center;">Welcome to ShopConnect</h2>
+            <hr>
+            <div style="text-align: center;">
+            <br>
+            <i><h3>Your Details</h3></i><br>
+            <p>Hospital:<i>{{user.hospital}}</i><br>Address:<i>{{user.address}}</i></p><br>
+            <a href="/detail"><button>Change Details</button></a><br>
+            </div>
+            <div style="margin-left: 25%;margin-right:25%;margin-top:100px">
+            <div class="box">
+                <h6 style="text-align: center;">Face Mask</h6>
+                <p>{{user.stock.mask}}</p>
+            </div>
+            <div class="box">
+                <h6 style="text-align: center;">PPE</h6>
+                <p>{{user.stock.ppe}}</p>
+            </div>
+            <div class="box">
+                <h6 style="text-align: center;">Ventilators</h6>
+                <p>{{user.stock.ventilator}}</p>
+            </div>
+            <div class="box">
+                <h6 style="text-align: center;">Gown</h6>
+                <p>{{user.stock.gown}}</p>
+            </div>
+            </div>
+            <br><br><br><br><br><br>
+            <hr>
+            <div style="text-align: center;">
+            <a href="/stock"><button>GO TO MAIN TILE</button></a>
+            </div>
+            <br><br><br><br>
+            <script>
+                function action(){
+                    document.getElementById("pa").innerHTML = "HELLLO";
+                }
+                </script>
+            </body>
+    </html>
