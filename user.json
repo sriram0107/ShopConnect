@@ -1,0 +1,10 @@
+[
+  {
+    "username": "john",
+    "password": "medisave",
+    "hospital": "MediSave Hospital",
+    "address": "24 st. Dubai",
+    "stock": { "mask": 1994, "ppe": 97, "ventilator": 19, "gown": 1199 },
+    "messages": []
+  }
+]
