@@ -2,6 +2,15 @@
 <html>
 
 <head>
+    <style>
+        .box {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: fit-content;
+            padding: 5px;
+        }
+    </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Messages</title>
@@ -9,10 +18,22 @@
 
 <body>
     {{>nav}}
-    {{#each messages}}
-    {{this.to}}<br>
-    {{this.message}}<br>
-    {{/each}}
+    <form method="POST" action="/sendmessage">
+        <input type="text" name="to" placeholder="Sending Message To..." value="{{to}}"><br>
+        <input type="text" name="message" placeholder="message" style="width: fit-content;"><br>
+        <input type="submit" value="Send Message">
+    </form>
+    <br><br>
+    <h2 style="align-self: center;">Messages</h2>
+    <div style="text-align: center;">
+        {{#each messages}}
+        <div class="box">
+            To:{{this.to}}<br>
+            Message:{{this.message}}<br>
+        </div>
+        <br>
+        {{/each}}
+    </div>
 
 </body>
 
