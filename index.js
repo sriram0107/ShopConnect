@@ -11,6 +11,7 @@ const detail = require("./routes/detail");
 const signup = require("./routes/signup");
 const account = require("./routes/account");
 const stock = require("./routes/stock");
+const sendmessage = require("./routes/sendmessage");
 var bodyParser = require("body-parser");
 
 hbs.registerPartials(__dirname + "/views/partials/");
@@ -36,5 +37,6 @@ app.use("/messages", messages);
 app.use("/detail", detail);
 app.use("/account", account);
 app.use("/stock", stock);
+app.use("/sendmessage", sendmessage);
 
 app.listen(5000, () => console.log("Server running on http://localhost:5000/"));
