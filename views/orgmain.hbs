@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Organization</title>
+    <style>
+        .na {
+            padding: 5px;
+            width: 100%;
+            height: fit-content;
+            background-color: darkgrey;
+        }
+
+        .box {
+            border: 1px solid black;
+            border-radius: 20px;
+            height: 100px;
+            width: 150px;
+            background-color: antiquewhite;
+            margin: 10px;
+            text-align: center;
+            float: left;
+        }
+
+        .message {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: fit-content;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <div class="na">
+        <img src="logo.png">
+    </div>
+    <h1 style="text-align: center;">Welcome to ShopConnect</h1>
+    <hr>
+    <i>
+        <h3>Your Details</h3>
+    </i><br>
+    <p>Shop : {{user.name}} <br> Address : {{user.address}}</p>
+    <hr>
+    <div style="margin-left: 25%;margin-right:25%;margin-top:100px">
+        <div class="box">
+            <h6 style="text-align: center;">Face Mask</h6>
+            <p>{{user.products.mask}}</p>
+        </div>
+        <div class="box">
+            <h6 style="text-align: center;">PPE</h6>
+            <p>{{user.products.ppe}}</p>
+        </div>
+        <div class="box">
+            <h6 style="text-align: center;">Ventilators</h6>
+            <p>{{user.products.ventilator}}</p>
+        </div>
+        <div class="box">
+            <h6 style="text-align: center;">Gown</h6>
+            <p>{{user.products.gown}}</p>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+    <form method="POST" action="/sendmessage/o">
+        <input type="text" name="to" placeholder="Sending Message To..." value="{{to}}"><br>
+        <input type="text" name="message" placeholder="message" style="width: fit-content;"><br>
+        <input type="submit" value="Send Message">
+    </form>
+    <br><br>
+    <h2 style="align-self: center;">Messages</h2>
+    <div style="text-align: center;">
+        {{#each messages}}
+        <div class="message">
+            To:{{this.to}}<br>
+            From:{{this.from}}<br>
+            Message:{{this.message}}<br>
+        </div>
+        <br>
+        {{/each}}
+        <br><br>
+    </div>
+</body>
+
+</html>
