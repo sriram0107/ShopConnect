@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
         ) {
           req.session.login = true;
           req.session.user = users[i];
-          res.redirect("/main");
+          res.redirect("/orgmain");
         }
       }
       res.render("login");
