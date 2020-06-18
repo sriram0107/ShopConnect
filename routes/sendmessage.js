@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.post("/s", (req, res) => {
   message = new Object();
+  message.send = true;
+  var today = new Date();
+  message.date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
   message.to = req.body.to;
   message.from = req.session.user.hospital;
   message.message = req.body.message;
@@ -26,7 +30,13 @@ router.post("/s", (req, res) => {
             users.forEach((mem) => {
               if (mem.username === req.session.user.username) {
                 mem.messages.push(message);
-                eventemitter.emit("shop", message, shops);
+                var mes = new Object();
+                mes.send = message.send;
+                mes.date = message.date;
+                mes.to = message.to;
+                mes.from = message.from;
+                mes.message = message.message;
+                eventemitter.emit("shop", mes, shops);
                 req.session.user = mem;
               }
             });
@@ -44,6 +54,10 @@ router.post("/s", (req, res) => {
 
 router.post("/o", (req, res) => {
   message = new Object();
+  message.send = true;
+  var today = new Date();
+  message.date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
   message.to = req.body.to;
   message.from = req.session.user.name;
   message.message = req.body.message;
@@ -64,7 +78,13 @@ router.post("/o", (req, res) => {
             shops.forEach((mem) => {
               if (mem.name === req.session.user.name) {
                 mem.messages.push(message);
-                eventemitter.emit("user", message, users);
+                var mes = new Object();
+                mes.send = message.send;
+                mes.date = message.date;
+                mes.to = message.to;
+                mes.from = message.from;
+                mes.message = message.message;
+                eventemitter.emit("user", mes, users);
                 req.session.user = mem;
               }
             });
@@ -81,6 +101,7 @@ router.post("/o", (req, res) => {
 });
 
 eventemitter.on("shop", (message, shops) => {
+  message.send = false;
   shops.forEach((mem) => {
     if (mem.name === message.to) mem.messages.push(message);
   });
@@ -91,6 +112,7 @@ eventemitter.on("shop", (message, shops) => {
 });
 
 eventemitter.on("user", (message, users) => {
+  message.send = false;
   users.forEach((mem) => {
     if (mem.hospital === message.to) mem.messages.push(message);
   });
