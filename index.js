@@ -14,6 +14,7 @@ const stock = require("./routes/stock");
 const sendmessage = require("./routes/sendmessage");
 const orglogin = require("./routes/orglogin");
 const orgmain = require("./routes/orgmain");
+const clearmessage = require("./routes/clearmessage");
 var bodyParser = require("body-parser");
 
 hbs.registerPartials(__dirname + "/views/partials/");
@@ -42,5 +43,6 @@ app.use("/stock", stock);
 app.use("/sendmessage", sendmessage);
 app.use("/orglogin", orglogin);
 app.use("/orgmain", orgmain);
+app.use("/clearmessage", clearmessage);
 
 app.listen(5000, () => console.log("Server running on http://localhost:5000/"));
