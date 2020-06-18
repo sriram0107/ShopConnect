@@ -18,19 +18,31 @@
 
 <body>
     {{>nav}}
-    <form method="POST" action="/sendmessage">
+    <form method="POST" action="/sendmessage/s">
         <input type="text" name="to" placeholder="Sending Message To..." value="{{to}}"><br>
         <input type="text" name="message" placeholder="message" style="width: fit-content;"><br>
         <input type="submit" value="Send Message">
     </form>
     <br><br>
+    <form method="POST" action="/clearmessage">
+        <input type="submit" value="Clear Messages"><br>
+    </form>
     <h2 style="align-self: center;">Messages</h2>
     <div style="text-align: center;">
         {{#each messages}}
-        <div class="box">
-            To:{{this.to}}<br>
-            Message:{{this.message}}<br>
+        {{#if send}}
+        <div class="box" style="margin-left:2px">
+            To:<b>{{this.to}}</b><br>
+            <i>{{this.date}}</i><br>
+            {{this.message}}<br>
         </div>
+        {{else}}
+        <div class="box" style="margin-right:2px;margin-left:60%">
+            From:<b>{{this.from}}</b><br>
+            <i>{{this.date}}</i><br>
+            {{this.message}}<br>
+        </div>
+        {{/if}}
         <br>
         {{/each}}
     </div>
