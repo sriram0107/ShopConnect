@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Messages</title>
+</head>
+
+<body>
+    {{>nav}}
+    <form method="POST" action="/detail/o">
+        <label>New Name</label><br>
+        <input type="text" name="name" /><br>
+        <label>New Password</label><br>
+        <input type="password" name="password" /><br>
+        <label>New Address</label><br>
+        <input type="text" name="address" /><br>
+        <label>New City</label><br>
+        <input type="text" name="city" /><br>
+        <label>New Contact</label><br>
+        <input type="text" name="contact" /><br>
+        <label>New Mask Stock</label><br>
+        <input type="text" name="mask" /><br>
+        <label>New PPE Stock</label><br>
+        <input type="text" name="ppe" /><br>
+        <label>New Ventilator Stock</label><br>
+        <input type="text" name="ventilator" /><br>
+        <label>New Gown Stock</label><br>
+        <input type="text" name="gown" /><br>
+
+        <input type="submit" value="Change">
+    </form>
+</body>
+
+</html>
