@@ -44,27 +44,27 @@ router.post("/", (req, res) => {
 });
 
 eventEmitter.on("mask", (user) => {
-  console.log("Entered mask");
-  console.log(user);
   fs.readFile("shops.json", "utf8", (err, file) => {
     if (err) console.log(err);
     else {
       var shops = JSON.parse(file);
-      /*var sfilt = shops.filter((mem) => {
-        user.address.includes(mem.city);
-      });
-      console.log(sfilt);*/
+      var sfilt = [];
       shops.forEach((mem) => {
+        if (user.address.toLowerCase().includes(mem.city.toLowerCase())) {
+          sfilt.push(mem);
+        }
+      });
+      sfilt.forEach((mem) => {
         if (mem.products.mask - 1000 >= -100) {
           console.log("sending request.....");
           axios
             .post("http://localhost:5000/sendmessage", {
               to: mem.name,
-              message: "We req masks ",
+              message: "We require masks asap ",
               user: user,
             })
             .then((res) => {
-              console.log(res);
+              //console.log(res);
             })
             .catch((err) => {
               console.log(err);
@@ -79,19 +79,22 @@ eventEmitter.on("ppe", (user) => {
     if (err) console.log(err);
     else {
       var shops = JSON.parse(file);
-      var shops = shops.filter((mem) => {
-        user.address.includes(mem.city);
-      });
+      var sfilt = [];
       shops.forEach((mem) => {
+        if (user.address.toLowerCase().includes(mem.city.toLowerCase())) {
+          sfilt.push(mem);
+        }
+      });
+      sfilt.forEach((mem) => {
         if (mem.products.ppe - 1000 >= -100) {
           axios
             .post("http://localhost:5000/sendmessage", {
               to: mem.name,
-              message: "We req ppe ",
+              message: "We require ppe asap ",
               user: user,
             })
             .then((res) => {
-              console.log(res);
+              //console.log(res);
             })
             .catch((err) => {
               console.log(err);
@@ -106,19 +109,22 @@ eventEmitter.on("ventilator", (user) => {
     if (err) console.log(err);
     else {
       var shops = JSON.parse(file);
-      var shops = shops.filter((mem) => {
-        user.address.includes(mem.city);
-      });
+      var sfilt = [];
       shops.forEach((mem) => {
+        if (user.address.toLowerCase().includes(mem.city.toLowerCase())) {
+          sfilt.push(mem);
+        }
+      });
+      sfilt.forEach((mem) => {
         if (mem.products.ventilator - 100 >= -10) {
           axios
             .post("http://localhost:5000/sendmessage", {
               to: mem.name,
-              message: "We req ventilators ",
+              message: "We require ventilators asap ",
               user: user,
             })
             .then((res) => {
-              console.log(res);
+              //console.log(res);
             })
             .catch((err) => {
               console.log(err);
@@ -133,19 +139,22 @@ eventEmitter.on("gown", (user) => {
     if (err) console.log(err);
     else {
       var shops = JSON.parse(file);
-      var shops = shops.filter((mem) => {
-        user.address.includes(mem.city);
-      });
+      var sfilt = [];
       shops.forEach((mem) => {
+        if (user.address.toLowerCase().includes(mem.city.toLowerCase())) {
+          sfilt.push(mem);
+        }
+      });
+      sfilt.forEach((mem) => {
         if (mem.products.gown - 2000 >= -100) {
           axios
             .post("http://localhost:5000/sendmessage", {
               to: mem.name,
-              message: "We req gowns ",
+              message: "We require gowns asap ",
               user: user,
             })
             .then((res) => {
-              console.log(res);
+              //console.log(res);
             })
             .catch((err) => {
               console.log(err);

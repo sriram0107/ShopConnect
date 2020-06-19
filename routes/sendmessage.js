@@ -4,6 +4,47 @@ const EventEmitter = require("events");
 const eventemitter = new EventEmitter();
 const router = express.Router();
 
+router.post("/", (req, res) => {
+  message = new Object();
+  message.send = true;
+  var today = new Date();
+  message.date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  message.to = req.body.to;
+  message.from = req.body.user.hospital;
+  message.message = req.body.message;
+  fs.readFile("shops.json", "utf8", (err, shopfile) => {
+    if (err) console.log(err);
+    else {
+      var shops = JSON.parse(shopfile);
+      fs.readFile("user.json", "utf8", (err, file) => {
+        if (err) console.log(err);
+        else {
+          var users = JSON.parse(file);
+          users.forEach((mem) => {
+            if (mem.username === req.body.user.username) {
+              mem.messages.push(message);
+              var mes = new Object();
+              mes.send = message.send;
+              mes.date = message.date;
+              mes.to = message.to;
+              mes.from = message.from;
+              mes.message = message.message;
+              eventemitter.emit("shop", mes, shops);
+              req.session.user = mem;
+            }
+          });
+          var data = JSON.stringify(users);
+          fs.writeFile("user.json", data, (err) => {
+            if (err) console.log(err);
+            else res.send("Successfully sent automated message");
+          });
+        }
+      });
+    }
+  });
+});
+
 router.post("/s", (req, res) => {
   message = new Object();
   message.send = true;
