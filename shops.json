@@ -1,21 +1,20 @@
 [
   {
     "name": "Mediclinic Enterprises",
+    "password": "org",
     "address": "123 st. Dubai",
     "city": "Dubai",
     "contact": "+971506756362",
-    "products": {
-      "mask": 1867,
-      "ppe": 933,
-      "ventilator": 70,
-      "gown": 984
-    }
+    "messages": [],
+    "products": { "mask": 5867, "ppe": 933, "ventilator": 70, "gown": 984 }
   },
   {
     "name": "Medisave Clinic",
+    "password": "org",
     "address": "12 st. Sharjah",
     "city": "Sharjah",
     "contact": "+9714535343",
+    "messages": [],
     "products": {
       "mask": 28367,
       "ppe": 29333,
@@ -25,50 +24,34 @@
   },
   {
     "name": "Med Care",
-    "address": "564st ,Downtown Dubai",
+    "password": "org",
+    "address": "dxb all street",
     "city": "Dubai",
-    "contact": "+971504898494",
+    "contact": "+9111111",
+    "messages": [],
     "products": {
-      "mask": 1867,
-      "ppe": 933,
-      "ventilator": 70,
-      "gown": 984
-    }
-  },
-  {
-    "name": "MPGE",
-    "address": "No.12, Sheikh Zayed Road, Dubai",
-    "city": "Dubai",
-    "contact": "+971828278282",
-    "products": {
-      "mask": 2867,
-      "ppe": 2933,
-      "ventilator": 270,
-      "gown": 22984
+      "mask": "10000",
+      "ppe": "10000",
+      "ventilator": "10000",
+      "gown": "10000"
     }
   },
   {
     "name": "MediForAll",
+    "password": "org",
     "address": "23st. Abu Dhabi",
     "city": "Abu Dhabi",
     "contact": "+9716456454644",
-    "products": {
-      "mask": 1867,
-      "ppe": 933,
-      "ventilator": 70,
-      "gown": 984
-    }
+    "messages": [],
+    "products": { "mask": 1867, "ppe": 933, "ventilator": 70, "gown": 984 }
   },
   {
     "name": "ABCD Clinic",
+    "password": "org",
     "address": "1233 st. Dubai",
     "city": "Dubai",
     "contact": "+972626252",
-    "products": {
-      "mask": 2867,
-      "ppe": 2933,
-      "ventilator": 270,
-      "gown": 22984
-    }
+    "messages": [],
+    "products": { "mask": 2867, "ppe": 2933, "ventilator": 270, "gown": 22984 }
   }
 ]
