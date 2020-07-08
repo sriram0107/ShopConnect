@@ -4,6 +4,7 @@ const axios = require("axios");
 const router = express.Router();
 const EventEmitter = require("events");
 const eventEmitter = new EventEmitter();
+const axios = require("axios");
 
 router.get("/", (req, res) => {
   if (req.session.login === true) {

@@ -3,6 +3,7 @@ const fs = require("fs");
 const EventEmitter = require("events");
 const eventemitter = new EventEmitter();
 const router = express.Router();
+const axios = require("axios");
 
 router.post("/", (req, res) => {
   message = new Object();
@@ -24,12 +25,7 @@ router.post("/", (req, res) => {
           users.forEach((mem) => {
             if (mem.username === req.body.user.username) {
               mem.messages.push(message);
-              var mes = new Object();
-              mes.send = message.send;
-              mes.date = message.date;
-              mes.to = message.to;
-              mes.from = message.from;
-              mes.message = message.message;
+              var mes = { ...message };
               eventemitter.emit("shop", mes, shops);
               req.session.user = mem;
             }
@@ -71,12 +67,7 @@ router.post("/s", (req, res) => {
             users.forEach((mem) => {
               if (mem.username === req.session.user.username) {
                 mem.messages.push(message);
-                var mes = new Object();
-                mes.send = message.send;
-                mes.date = message.date;
-                mes.to = message.to;
-                mes.from = message.from;
-                mes.message = message.message;
+                var mes = { ...message };
                 eventemitter.emit("shop", mes, shops);
                 req.session.user = mem;
               }

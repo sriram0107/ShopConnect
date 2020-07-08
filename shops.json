@@ -5,7 +5,15 @@
     "address": "123 st. Dubai",
     "city": "Dubai",
     "contact": "+971506756362",
-    "messages": [],
+    "messages": [
+      {
+        "send": false,
+        "date": "7-7-2020",
+        "to": "Mediclinic Enterprises",
+        "from": "Jonascare",
+        "message": "Hey"
+      }
+    ],
     "products": { "mask": 5867, "ppe": 933, "ventilator": 70, "gown": 984 }
   },
   {

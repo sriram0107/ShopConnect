@@ -1,18 +1,10 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
+const axios = require("axios");
 
 router.post("/", (req, res) => {
-  var newUser = new Object();
-  newUser.username = req.body.username;
-  newUser.password = req.body.password;
-  newUser.hospital = req.body.hospital;
-  newUser.address = req.body.address;
-  newUser.stock = {};
-  newUser.stock.mask = req.body.mask;
-  newUser.stock.ppe = req.body.ppe;
-  newUser.stock.ventilator = req.body.ventilator;
-  newUser.stock.gown = req.body.gown;
+  var newUser = { ...req.body };
   newUser.messages = [];
   fs.readFile("user.json", "utf8", (err, file) => {
     var users = JSON.parse(file);

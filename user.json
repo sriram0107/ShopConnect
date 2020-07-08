@@ -6,5 +6,24 @@
     "address": "24 st. Dubai",
     "stock": { "mask": 1994, "ppe": 97, "ventilator": 19, "gown": 1199 },
     "messages": []
+  },
+  {
+    "username": "Jonas",
+    "password": "Jonas",
+    "hospital": "Jonascare",
+    "address": "1234",
+    "stock.mask": "1000",
+    "stock.ppe": "1000",
+    "stock.ventilator": "1000",
+    "stock.gown": "1000",
+    "messages": [
+      {
+        "send": true,
+        "date": "7-7-2020",
+        "to": "Mediclinic Enterprises",
+        "from": "Jonascare",
+        "message": "Hey"
+      }
+    ]
   }
 ]
