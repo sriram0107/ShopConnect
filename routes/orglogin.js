@@ -1,26 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
 const axios = require("axios");
 
 router.post("/", (req, res) => {
-  fs.readFile("shops.json", "utf8", (err, file) => {
-    if (err) console.log(err);
-    else {
-      const users = JSON.parse(file);
-      for (var i = 0; i < users.length; i++) {
-        if (
-          users[i].name === req.body.name &&
-          users[i].password === req.body.password
-        ) {
-          req.session.login = true;
-          req.session.user = users[i];
-          res.redirect("/orgmain");
-        }
+  axios
+    .post("http://localhost:5001/shops/login", { ...req.body })
+    .then((response) => {
+      if (response.status === 200) {
+        req.session.user = { ...response.data };
+        req.session.login = true;
+        res.redirect("/orgmain");
+      } else {
+        res.send("Error Logging In...Try Again");
       }
-      res.render("login");
-    }
-  });
+    })
+    .catch((err) => res.render("login", { errMesorg: "Invalid Credentials" }));
 });
 
 module.exports = router;

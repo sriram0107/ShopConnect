@@ -1,5 +1,4 @@
 const express = require("express");
-const fs = require("fs");
 const router = express.Router();
 const axios = require("axios");
 
@@ -15,72 +14,71 @@ router.get("/o", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  var newUser = new Object();
-  newUser.username = req.body.username;
-  newUser.password = req.body.password;
-  newUser.hospital = req.body.hospital;
-  newUser.address = req.body.address;
-  fs.readFile("user.json", "utf8", (err, file) => {
-    var users = JSON.parse(file);
-    users.forEach((mem) => {
-      if (mem.username === req.session.user.username) {
-        mem.username = newUser.username ? newUser.username : mem.username;
-        mem.password = newUser.password ? newUser.password : mem.password;
-        mem.hospital = newUser.hospital ? newUser.hospital : mem.hospital;
-        mem.address = newUser.address ? newUser.address : mem.address;
-        req.session.user = mem;
+  var newUser = { ...req.body };
+  req.session.user.username = newUser.username
+    ? newUser.username
+    : req.session.user.username;
+  req.session.user.password = newUser.password
+    ? newUser.password
+    : req.session.user.password;
+  req.session.user.hospital = newUser.hospital
+    ? newUser.hospital
+    : req.session.user.hospital;
+  req.session.user.address = newUser.address
+    ? newUser.address
+    : req.session.user.address;
+
+  console.log("-------");
+  console.log(req.session.user);
+
+  axios
+    .put("http://localhost:5001/user/detail", { ...req.session.user })
+    .then((response) => {
+      if (response.status === 200) {
+        res.redirect("/main");
+      } else {
+        throw new Error(response);
       }
-    });
-    var data = JSON.stringify(users);
-    fs.writeFile("user.json", data, (err) => {
-      if (err) console.log(err);
-      else res.redirect("/main");
-    });
-  });
+    })
+    .catch((err) => res.send(err));
 });
 
 router.post("/o", (req, res) => {
-  var newUser = new Object();
-  newUser.name = req.body.name;
-  newUser.password = req.body.password;
-  newUser.address = req.body.address;
-  newUser.city = req.body.city;
-  newUser.contact = req.body.contact;
-  newUser.products = {};
-  newUser.products.mask = req.body.mask;
-  newUser.products.ppe = req.body.ppe;
-  newUser.products.ventilator = req.body.ventilator;
-  newUser.products.gown = req.body.gown;
-  fs.readFile("shops.json", "utf8", (err, file) => {
-    var users = JSON.parse(file);
-    users.forEach((mem) => {
-      if (mem.name === req.session.user.name) {
-        mem.name = newUser.name ? newUser.name : mem.name;
-        mem.password = newUser.password ? newUser.password : mem.password;
-        mem.address = newUser.address ? newUser.address : mem.address;
-        mem.city = newUser.city ? newUser.city : mem.city;
-        mem.contact = newUser.contact ? newUser.contact : mem.contact;
-        mem.products.mask = newUser.products.mask
-          ? newUser.products.mask
-          : mem.products.mask;
-        mem.products.ppe = newUser.products.ppe
-          ? newUser.products.ppe
-          : mem.products.ppe;
-        mem.products.ventilator = newUser.products.ventilator
-          ? newUser.products.ventilator
-          : mem.products.ventilator;
-        mem.products.gown = newUser.products.gown
-          ? newUser.products.gown
-          : mem.products.gown;
-        req.session.user = mem;
+  var newUser = { ...req.body };
+  req.session.user.name = newUser.name ? newUser.name : req.session.user.name;
+  req.session.user.password = newUser.password
+    ? newUser.password
+    : req.session.user.password;
+  req.session.user.address = newUser.address
+    ? newUser.address
+    : req.session.user.address;
+  req.session.user.city = newUser.city ? newUser.city : req.session.user.city;
+  req.session.user.contact = newUser.contact
+    ? newUser.contact
+    : req.session.user.contact;
+  req.session.user.products.mask = newUser.products.mask
+    ? newUser.products.mask
+    : req.session.user.products.mask;
+  req.session.user.products.ppe = newUser.products.ppe
+    ? newUser.products.ppe
+    : req.session.user.products.ppe;
+  req.session.user.products.ventilator = newUser.products.ventilator
+    ? newUser.products.ventilator
+    : req.session.user.products.ventilator;
+  req.session.user.products.gown = newUser.products.gown
+    ? newUser.products.gown
+    : req.session.user.products.gown;
+  axios
+    .post("http://localhost:5001/shops/detail", { ...req.session.user })
+    .then((response) => {
+      if (response.status === 200) {
+        res.redirect("/orgmain");
+      } else {
+        var err = new Error("Error changing");
+        throw err;
       }
-    });
-    var data = JSON.stringify(users);
-    fs.writeFile("shops.json", data, (err) => {
-      if (err) console.log(err);
-      else res.redirect("/orgmain");
-    });
-  });
+    })
+    .catch((err) => res.send("Server Error!!"));
 });
 
 module.exports = router;
