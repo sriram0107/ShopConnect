@@ -18,8 +18,6 @@ router.post("/", (req, res) => {
   for (k in req.body) {
     t = k;
   }
-  console.log(req.body);
-  console.log(".......");
   res.render("messages", {
     user: req.session.user,
     messages: req.session.user.messages,

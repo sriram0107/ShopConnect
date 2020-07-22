@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+var shopdata;
 
 router.get("/", (req, res) => {
   if (req.session.login == true) {
@@ -8,9 +9,7 @@ router.get("/", (req, res) => {
       .get("http://localhost:5001/shops")
       .then((response) => {
         if (response.status === 200) {
-          console.log("-------------");
-          console.log(response.data);
-          console.log("---------");
+          shopdata = response.data;
           res.render("shop", { shops: response.data });
         } else {
           throw new Error("Data not found");
@@ -23,35 +22,26 @@ router.get("/", (req, res) => {
 });
 
 router.post("/:id", (req, res) => {
-  axios
-    .get("http://localhost:5001/shops")
-    .then((response) => {
-      if (response.status === 200) {
-        switch (req.params.id) {
-          case 1:
-            var data = response.data.filter((mem) =>
-              mem.username.toLowerCase().includes(req.body.shop.toLowerCase())
-            );
-            res.render("shop", { shops: data });
-            break;
-          case 2:
-            var data = response.data.filter(
-              (mem) => mem.stock[req.body.item] >= req.body.quantity
-            );
-            res.render("shop", { shops: data });
-            break;
-          case 3:
-            var data = response.data.filter((mem) =>
-              mem.city.toLowerCase().includes(req.body.shop.toLowerCase())
-            );
-            res.render("shop", { shops: data });
-            break;
-        }
-      } else {
-        throw new Error("Data not found");
-      }
-    })
-    .catch((err) => res.send(err));
+  switch (req.params.id) {
+    case "1":
+      var data = shopdata.filter((mem) =>
+        mem.username.toLowerCase().includes(req.body.shop.toLowerCase())
+      );
+      res.render("shop", { shops: data });
+      break;
+    case "2":
+      var data = shopdata.filter(
+        (mem) => mem.products[req.body.item] >= req.body.quantity
+      );
+      res.render("shop", { shops: data });
+      break;
+    case "3":
+      var data = shopdata.filter((mem) =>
+        mem.city.toLowerCase().includes(req.body.shop.toLowerCase())
+      );
+      res.render("shop", { shops: data });
+      break;
+  }
 });
 
 module.exports = router;

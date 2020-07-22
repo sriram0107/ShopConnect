@@ -28,6 +28,7 @@ router.post("/o", (req, res) => {
     })
     .then((response) => {
       if (response.status === 200) {
+        req.session.user.messages = [];
         res.redirect("/orgmain");
       } else {
         var err = new Error("Error clearing the messages");

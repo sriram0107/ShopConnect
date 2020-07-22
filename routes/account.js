@@ -21,11 +21,11 @@ router.post("/", (req, res) => {
 router.post("/o", (req, res) => {
   var newUser = { ...req.body };
   newUser.messages = [];
-  var response;
+  console.log(newUser);
   axios
     .post("http://localhost:5001/shops", { ...newUser })
     .then((response) => {
-      if (data.status === 200) {
+      if (response.status === 200) {
         res.redirect("/");
       } else {
         res.send("Username Taken");

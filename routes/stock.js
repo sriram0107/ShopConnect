@@ -19,61 +19,46 @@ router.post("/", (req, res) => {
     t = k;
   }
   req.session.user.stock[t] -= 1;
-  switch (t) {
-    case "mask":
-      if (req.session.user.stock[t] === 999) {
-        eventEmitter.emit("mask", req.session.user);
-      }
-      res.redirect("/stock");
-      break;
-    case "ppe":
-      if (req.session.user.stock[t] === 999) {
-        eventEmitter.emit("ppe", req.session.user);
-      }
-      res.redirect("/stock");
-      break;
-    case "ventilator":
-      if (req.session.user.stock[t] === 999) {
-        eventEmitter.emit("ventilator", req.session.user);
-      }
-      res.redirect("/stock");
-      break;
-    case "gown":
-      if (req.session.user.stock[t] === 999) {
-        eventEmitter.emit("gown", req.session.user);
-      }
-      res.redirect("/stock");
-      break;
+  if (req.session.user.stock[t] === 999) {
+    axios
+      .get("http://localhost:5001/shops")
+      .then((shops) => {
+        var sfilt = shops.data;
+        mes = {};
+        mes.send = false;
+        var today = new Date();
+        mes.date =
+          today.getDate() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          today.getFullYear();
+        mes.to = sfilt[Math.floor(Math.random() * sfilt.length)].username;
+        mes.from = req.session.user.username;
+        mes.message = `we require ${t} immediately`;
+        axios
+          .put("http://localhost:5001/shops/message", { ...mes })
+          .then((response) => {
+            if (response.status === 200) {
+              req.session.user.messages.push({ ...mes, send: true });
+              res.redirect("/stock");
+            } else {
+              throw new Error("Message Unsuccessful(Check shop details)");
+            }
+          })
+          .catch((err) => console.log("error in sending message"));
+      })
+      .catch((err) => console.log(err));
   }
 });
 
-eventEmitter.on("mask", (user) => {
-  axios
-    .put(`http://localhost:5001/shops/quantity/mask`, { ...user })
-    .then((res) => {
-      console.log("0-0-0-0-0-0-0-");
-      console.log(res);
-      console.log("0-0-0-0-0-0-0-");
-      user.messages.push(res.data);
-    })
-    .catch((err) => res.send("error"));
-});
-eventEmitter.on("ppe", (user) => {
-  axios
-    .put(`http://localhost:5001/shops/quantity/${user.city}/ppe`)
-    .then((res) => user.messages.push(res.data))
-    .catch((err) => res.send("error"));
-});
-eventEmitter.on("ventilator", (user) => {
-  axios
-    .put(`http://localhost:5001/shops/quantity/${user.city}/ventilator`)
-    .then((res) => user.messages.push(res.data))
-    .catch((err) => res.send("error"));
-});
-eventEmitter.on("gown", (user) => {
-  axios
-    .put(`http://localhost:5001/shops/quantity/${user.city}/gown`)
-    .then((res) => user.messages.push(res.data))
-    .catch((err) => res.send("error"));
-});
 module.exports = router;
+
+// shops.forEach((mem) => {
+//   if (
+//     req.body.address.toLowerCase().includes(mem.city.toLowerCase()) &&
+//     mem.products[req.params.item] - 100 >= -10
+//   ) {
+//     sfilt.push(mem);
+//   }
+// });
