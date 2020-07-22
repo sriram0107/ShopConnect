@@ -1,11 +1,10 @@
 # ShopConnect
-A Node application to connect hospitals and clinics facing healthcare equipment shortages with shops that sell those equipment.
+An Application to connect hospitals and clinics facing healthcare equipment shortages with shops that sell those equipment.
 
 ## Modules Used
 ```
 express
 express-session
-fs
 axios
 hbs
 body-parser
