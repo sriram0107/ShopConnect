@@ -6,7 +6,7 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Organization</title>
     <style>
-        .na {
+        .nav {
             padding: 5px;
             width: 100%;
             height: fit-content;
@@ -19,7 +19,6 @@
             height: 100px;
             width: 150px;
             background-color: antiquewhite;
-            margin: 10px;
             text-align: center;
             float: left;
         }
@@ -31,11 +30,16 @@
             width: fit-content;
             padding: 5px;
         }
+
+        .err {
+            font-family: 'Courier New', Courier, monospace;
+            color: red;
+        }
     </style>
 </head>
 
-<body style="text-align: center;">
-    <div class="na">
+<body style="background-color: aliceblue;">
+    <div class="nav">
         <img src="logo.png">
     </div>
     <h1 style="text-align: center;">Welcome to ShopConnect</h1>
@@ -43,24 +47,35 @@
     <i>
         <h3>Your Details</h3>
     </i><br>
-    <p>Shop : {{user.name}} <br> Address : {{user.address}}</p>
+    <p>Shop : {{user.username}} <br> Address : {{user.address}}</p>
     <hr>
-    <div style="margin-left: 25%;margin-right:25%;margin-top:100px">
-        <div class="box">
-            <h6 style="text-align: center;">Face Mask</h6>
-            <p>{{user.products.mask}}</p>
-        </div>
-        <div class="box">
-            <h6 style="text-align: center;">PPE</h6>
-            <p>{{user.products.ppe}}</p>
-        </div>
-        <div class="box">
-            <h6 style="text-align: center;">Ventilators</h6>
-            <p>{{user.products.ventilator}}</p>
-        </div>
-        <div class="box">
-            <h6 style="text-align: center;">Gown</h6>
-            <p>{{user.products.gown}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-xs-12 col-xs-12 box">
+
+                <h6 style="text-align: center;">Face Mask</h6>
+                <p>{{user.products.mask}}</p>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-xs-12 box">
+
+                <h6 style="text-align: center;">PPE</h6>
+                <p>{{user.products.ppe}}</p>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-xs-12 box">
+
+                <h6 style="text-align: center;">Ventilators</h6>
+                <p>{{user.products.ventilator}}</p>
+
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-xs-12 col-xs-12 box">
+
+                <h6 style="text-align: center;">Gown</h6>
+                <p>{{user.products.gown}}</p>
+
+            </div>
         </div>
     </div>
     <a href="/detail/o"><button>Change Details</button></a><br>
@@ -72,17 +87,19 @@
     <br><br><br><br><br><br>
     <form method="POST" action="/sendmessage/o">
         <input type="text" name="to" placeholder="Sending Message To..." value="{{to}}"><br>
-        <input type="text" name="message" placeholder="message" style="width: fit-content;"><br>
-        <input type="submit" value="Send Message">
+        <textarea type="text" name="message" placeholder="message" rows="2" cols="12">
+            </textarea>
+        <input type="submit" value="Send Message" class="btn btn-success">
     </form>
     <br>
     <form method="POST" action="/clearmessage/o">
-        <input type="submit" value="Clear Messages"><br>
+        <input type="submit" value="Clear Messages" class="btn btn-warning"><br>
     </form>
+    <p class="err">{{err}}</p>
     <br><br>
     <h2 style="align-self: center;">Messages</h2>
     <div style="text-align: center;">
-        {{#each messages}}
+        {{#each user.messages}}
         {{#if send}}
         <div class="message" style="margin-left:2px">
             <b>{{this.to}}</b><br>

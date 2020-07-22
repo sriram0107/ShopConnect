@@ -13,10 +13,9 @@
             background-color: blanchedalmond;
             border: 1px solid black;
             border-radius: 4px;
-            height: fit-content;
-            width: 30%;
             padding: 2px;
-            margin: auto;
+            width: 30%;
+
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -30,30 +29,69 @@
     <br>
     <h2 style="text-align: center;">Connect With Shops</h2>
     <hr>
-    <form method="POST" action="/shop">
-        <input type="text" name="shop" placeholder="Search By Name.....">
-        <input type="submit" value="Search...">
-    </form>
-    <p id="shop">
-        {{#each shops}}
-        <div class="box">
-            {{this.name}}<br>
-            {{this.address}}<br>
-            {{this.contact}}<br>
-            <h5>Products</h5>
-            Masks : {{this.products.mask}}<br>
-            PPE : {{this.products.ppe}}<br>
-            Ventilators :{{this.products.ventilator}}<br>
-            Gowns :{{this.products.gown}}<br>
-            <form method="POST" action="/Messages">
-                <button name="{{this.name}}">Contact</button>
-            </form>
-        </div>
-        <br>
-        {{/each}}
-    </p>
-    <script>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" onclick="f1()">Search by Name</button>
+        <button type="button" class="btn btn-secondary" onclick="f2()">Search by Quantity</button>
+        <button type="button" class="btn btn-secondary" onclick="f3()">Search By City</button>
+    </div>
+    <div id="forms">
+    </div>
+    <br>
+    <div id="1" style="display: none;">
+        <form method="POST" action="/shop/1">
+            <input type="text" name="shop" placeholder="Search By Name....." />
+            <input type="submit" value="Search..." class="btn btn-dark" />
+        </form>
+    </div>
+    <div id="2" style="display: none;">
+        <form method="POST" action="/shop/2">
+            <select name='item'>
+                <option value="masks">Masks</option>
+                <option value="ppe">PPE</option>
+                <option value="ventilators">Ventilators</option>
+                <option value="gowns">Gowns</option>
+            </select>
+            <input name="quantity" type="number" placeholder="Search by quantity...">
+            <input type="submit" value="Search..." class="btn btn-dark" />
+        </form>
+    </div>
+    <div id="3" style="display: none;">
+        <form method="POST" action="/shop/3">
+            <input type="text" name="shop" placeholder="Search By City.....">
+            <input type="submit" value="Search..." class="btn btn-dark" />
+        </form>
+    </div>
 
+    <div class="container">
+        <div class="row">
+            {{#each shops}}
+            <div class="col-lg-4 col-md-4 col-sm-12 box">
+                {{this.username}}<br>
+                {{this.address}}<br>
+                {{this.contact}}<br>
+                <h5>Products</h5>
+                Masks : {{this.products.mask}}<br>
+                PPE : {{this.products.ppe}}<br>
+                Ventilators :{{this.products.ventilator}}<br>
+                Gowns :{{this.products.gown}}<br>
+                <form method="POST" action="/Messages">
+                    <button value="{{this.username}}" name="{{this.username}}">Contact Us</button>
+                </form>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <script>
+        function f1() {
+            document.getElementById("forms").innerHTML = document.getElementById("1").innerHTML;
+        }
+        function f2() {
+            document.getElementById("forms").innerHTML = document.getElementById("2").innerHTML;
+        }
+        function f3() {
+            document.getElementById("forms").innerHTML = document.getElementById("3").innerHTML;
+        }
     </script>
 </body>
 

@@ -2,47 +2,69 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
+        .err {
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .info {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-style: italic;
         }
     </style>
     <title>Login</title>
 </head>
 
-<body style="text-align: center;">
-    <img src="logo.png" class="centre" style="width: 25%;height:25%;">
-    <br>
-    <h2>Hospital Sign In</h2>
-    <form method="POST" action="/" style="align-self: center;">
-        <input style="border-radius:20px;padding:5px;" type="text" name="username" placeholder="Enter Username :"
-            required><br><br>
-        <input style="border-radius:20px;padding:5px;" type="password" name="password" placeholder="Enter Password"
-            required><br><br>
-        <input type="submit" value="Go">
-    </form>
-    <form method="POST" action="/signup">
-        <input type="submit" value="Sign Up">
-    </form>
-    <br>
-    <h2>Shop Sign In</h2>
-    <form method="POST" action="/orglogin" style="align-self: center;">
-        <input style="border-radius:20px;padding:5px;" type="text" name="name" placeholder="Enter Company Name:"
-            required><br><br>
-        <input style="border-radius:20px;padding:5px;" type="password" name="password" placeholder="Enter Password"
-            required><br><br>
-        <input type="submit" value="Go">
-    </form>
-    <form method="POST" action="/signup/o">
-        <input type="submit" value="Organization Sign Up">
-    </form>
-    <br>
-
-
+<body
+    style="background-color:aliceblue;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <h1>Login To Your Account</h1>
+                <h2>Hospital Sign In</h2>
+                <form method="POST" action="/">
+                    <input style="border-radius:20px;padding:5px;" type="text" name="username"
+                        placeholder="Enter Username :" required><br><br>
+                    <input style="border-radius:20px;padding:5px;" type="password" name="password"
+                        placeholder="Enter Password" required><br><br>
+                    <p class="err">{{errMes}}</p>
+                    <input type="submit" value="Go" class="btn btn-primary">
+                </form>
+                <i>or..</i>
+                <form method="POST" action="/signup">
+                    <input type="submit" value="Sign Up">
+                </form>
+                <br>
+                <h2>Shop Sign In</h2>
+                <form method="POST" action="/orglogin">
+                    <input style="border-radius:20px;padding:5px;" type="text" name="username"
+                        placeholder="Enter Company Name:" required><br><br>
+                    <input style="border-radius:20px;padding:5px;" type="password" name="password"
+                        placeholder="Enter Password" required><br><br>
+                    <p class="err">{{errMesorg}}</p>
+                    <input type="submit" value="Go" class="btn btn-primary" />
+                </form>
+                <i>or..</i>
+                <form method="POST" action="/signup/o">
+                    <input type="submit" value="Sign Up">
+                </form>
+                <br>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5" style="background-color: white;">
+                <div class="container">
+                    <div class="row">
+                        <img src="logo.png" style="height: 100%;width:100%;" />
+                    </div>
+                    <div class="row">
+                        <p class="info">An application that prevents you from running out of supplies!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

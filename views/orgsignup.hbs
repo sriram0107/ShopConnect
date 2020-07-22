@@ -3,15 +3,35 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        input[type="text"] {
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        input[type="password"] {
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .jumbotron {
+            align-content: center;
+            background-color: antiquewhite;
+        }
+    </style>
     <title>
         Sign Up
     </title>
 </head>
 
-<body>
+<body style="background-color: aliceblue;">
+    <p class="jumbotron">Sign your organization up to contribute in this unprecedented crisis.<br>Your contribution can
+        help
+        us overcome
+        the biggest obstacle that heathcare professionals face every single day</p>
     <form method="POST" action="/account/o">
-        <label>Name</label><br>
-        <input type="text" name="name" /><br>
+        <label md=2>Name</label><br>
+        <input type="text" name="username" md=10 /><br>
         <label>Password</label><br>
         <input type="password" name="password" /><br>
         <label>Address</label><br>
@@ -21,13 +41,13 @@
         <label>Contact</label><br>
         <input type="text" name="contact" /><br>
         <label>Current mask stock</label><br>
-        <input type="text" name="mask" /><br>
+        <input type="number" name="products.mask" /><br>
         <label>Current PPE stock</label><br>
-        <input type="text" name="ppe" /><br>
+        <input type="number" name="products.ppe" /><br>
         <label>Current ventilator stock</label><br>
-        <input type="text" name="ventilator" /><br>
+        <input type="number" name="products.ventilator" /><br>
         <label>Current gown stock</label><br>
-        <input type="text" name="gown" /><br>
+        <input type="number" name="products.gown" /><br>
         <input type="submit" value="Create Account">
     </form>
 </body>
