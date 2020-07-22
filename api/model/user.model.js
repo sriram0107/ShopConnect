@@ -3,7 +3,7 @@ const schema = mongoose.Schema;
 
 const userSchema = new schema(
   {
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     hospital: { type: String, required: true },
     address: { type: String, required: true },
@@ -15,8 +15,8 @@ const userSchema = new schema(
     },
     messages: [
       {
-        send: { type: String },
-        date: { type: Date },
+        send: { type: Boolean },
+        date: { type: String },
         to: { type: String },
         from: { type: String },
         message: { type: String },

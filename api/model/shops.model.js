@@ -5,23 +5,24 @@ const shopSchema = new schema(
   {
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    hospital: { type: String, required: true },
     address: { type: String, required: true },
-    stock: {
-      mask: { type: Number },
-      ppe: { type: Number },
-      ventilator: { type: Number },
-      gown: { type: Number },
-    },
+    city: { type: String, required: true },
+    contact: { type: String, required: true },
     messages: [
       {
-        send: { type: String },
-        date: { type: Date },
+        send: { type: Boolean },
+        date: { type: String },
         to: { type: String },
         from: { type: String },
         message: { type: String },
       },
     ],
+    products: {
+      mask: { type: Number },
+      ppe: { type: Number },
+      ventilator: { type: Number },
+      gown: { type: Number },
+    },
   },
   {
     writeConcern: {
@@ -34,4 +35,4 @@ const shopSchema = new schema(
 
 const Shops = mongoose.model("shops", shopSchema);
 
-export default Shops;
+module.exports = Shops;
