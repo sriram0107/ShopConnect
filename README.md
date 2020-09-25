@@ -10,10 +10,6 @@ hbs
 body-parser
 
 ```
-## To start the application 
-```
-node index
-```
 # How it works...
 The application has a separate interface for medical staff and hospital admins. The staff can keep track of supplies and edit as they are being used. 
 
